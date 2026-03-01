@@ -1,56 +1,93 @@
-// client/src/App.js
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './App.css';
+import React from "react";
+import "./App.css";
 
 function App() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  // Fetch data from Express Backend
-  useEffect(() => {
-    axios.get('http://localhost:5000/api/data')
-      .then(response => {
-        setData(response.data);
-        setLoading(false);
-      })
-      .catch(error => console.error("Error fetching data:", error));
-  }, []);
-
-  if (loading) return <div>Loading...</div>;
+  const portfolioData = {
+    name: "Sidrick Depra",
+    role: "Full Stack Developer",
+    about:
+      "Passionate developer specializing in building modern web applications using React, Node.js, and Express.",
+    skills: ["React", "Node.js", "Express", "SQL", "Git", "JavaScript"],
+    projects: [
+      {
+        id: 1,
+        title: "E-Commerce App",
+        description: "Full-stack shopping platform built with MERN stack.",
+        link: "https://github.com/cedricsjd"
+      },
+      {
+        id: 2,
+        title: "Portfolio Website",
+        description: "Personal portfolio built with React and deployed on GitHub Pages.",
+        link: "https://cedricsjd.github.io"
+      }
+    ]
+  };
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>{data.name}</h1>
-        <h2>{data.role}</h2>
-      </header>
+      {/* Navbar */}
+      <nav className="navbar">
+        <h2>{portfolioData.name}</h2>
+        <div>
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+          <a href="#home" className="back-to-top">↑</a>
+        </div>
+      </nav>
 
-      <main>
-        <section>
-          <h3>Skills</h3>
-          <ul>
-            {data.skills.map((skill, index) => (
-              <li key={index}>{skill}</li>
-            ))}
-          </ul>
-        </section>
+      {/* Hero Section */}
+      <section id="home" className="hero">
+        <h1>Hi, I'm {portfolioData.name}</h1>
+        <h3>{portfolioData.role}</h3>
+      </section>
 
-        <section>
-          <h3>Projects</h3>
-          <div className="projects-container">
-            {data.projects.map(project => (
-              <div key={project.id} className="project-card">
-                <h4>{project.title}</h4>
-                <p>{project.description}</p>
-                <a href={project.link} target="_blank" rel="noreferrer">
-                  View Project
-                </a>
-              </div>
-            ))}
-          </div>
-        </section>
-      </main>
+      {/* About */}
+      <section id="about" className="section">
+        <h2>About Me</h2>
+        <p>{portfolioData.about}</p>
+      </section>
+
+      {/* Skills */}
+      <section id="skills" className="section">
+        <h2>Skills</h2>
+        <div className="skills-grid">
+          {portfolioData.skills.map((skill, index) => (
+            <div key={index} className="skill-card">
+              {skill}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Projects */}
+      <section id="projects" className="section">
+        <h2>Projects</h2>
+        <div className="projects-grid">
+          {portfolioData.projects.map((project) => (
+            <div key={project.id} className="project-card">
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+              <a href={project.link} target="_blank" rel="noreferrer">
+                View Project
+              </a>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="section">
+        <h2>Contact</h2>
+        <p>Email: sdepra.tech@gmail.com</p>
+      </section>
+
+      <footer>
+        <p>© 2026 {portfolioData.name}. All rights reserved.</p>
+      </footer>
     </div>
   );
 }
