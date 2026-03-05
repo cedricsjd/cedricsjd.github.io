@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import profilePic from "./assets/sid_ID.jpg";
 
 function App() {
   const portfolioData = {
@@ -41,8 +42,9 @@ function App() {
 
       {/* Hero Section */}
       <section id="home" className="hero">
-        <h1>Hi, I'm {portfolioData.name}</h1>
-        <h3>{portfolioData.role}</h3>
+       <img src={profilePic} alt="Sidrick Depra" className="profile-img" />
+       <h1>Hi, I'm {portfolioData.name}</h1>
+       <h3>{portfolioData.role}</h3>
       </section>
 
       {/* About */}
