@@ -4,7 +4,7 @@ import profilePic from "./assets/sid_ID.jpg";
 
 function App() {
   const portfolioData = {
-    name: "Sidrick Depra",
+    name: "Sidrick J. Depra",
     role: "Full Stack Developer",
     about:
       "Passionate developer specializing in building modern web applications using React, Node.js, and Express.",
